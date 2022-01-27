@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test vue tab</title>
+  <link rel="stylesheet" href="assets_v2/css/hw-pc.min.css">
+  <link rel="stylesheet" href="assets_v2/css/layout-pc.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+</head>
+
+<body>
+  <div id="hw-index">
+    <section class="row no-gutters mb-4">
+      <div class="col-12  bg-white p-3">
+        <!-- Title Bar (Start) -->
+        <div class="py-2 d-flex align-items-center">
+          <h3 class="hw-fs-16 text-1000"><span class="material-icons text-primary mr-2 pb-1">fiber_new</span>New Arrival
+          </h3>
+          <div class="ml-auto">
+            <a href="#!"
+              class="align-text-bottom btn btn-outline-primary rounded-pill py-0 px-3 text-primary hw-fs-14">more</a>
+          </div>
+        </div>
+        <!-- Title Bar (End) -->
+        <div class="brands-top-wrapper">
+
+          <div class="links">
+            <a class="link" v-for="(link, index) in links" :key="index" @click="componentName = link"
+              :class="{active: componentName == link}">
+              {{ link }}
+            </a>
+          </div>
+
+          <transition name="fade" mode="out-in">
+            <keep-alive>
+              <component :is="componentName">
+              </component>
+            </keep-alive>
+          </transition>
+
+          <v-swiper perview="5">
+            <li class="p-2 swiper-slide border-primary-hover" v-for="data in goodsList1">
+              <goods-horizontal-1 v-bind="data">
+              </goods-horizontal-1>
+            </li>
+            <li class="p-2 swiper-slide border-primary-hover" v-for="data in goodsList2">
+              <goods-horizontal-2 v-bind="data">
+              </goods-horizontal-2>
+            </li>
+            <li class="p-2 swiper-slide border-primary-hover" v-for="data in goodsList3">
+              <goods-horizontal-3 v-bind="data">
+              </goods-horizontal-3>
+            </li>
+          </v-swiper>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/http-vue-loader"></script>
+  <script>
+    //Vue.use(VueSlimTabs)
+
+    new Vue({
+      el: '#hw-index',
+      components: {
+        'v-swiper': httpVueLoader('../vue/component/public/slider/swiper.vue'),
+        'goods-horizontal-1': httpVueLoader('../vue/component/public/goods/horizontal_1.vue'),
+        'goods-horizontal-2': httpVueLoader('../vue/component/public/goods/set_1.vue'),
+        'goods-horizontal-3': httpVueLoader('../vue/component/public/goods/horizontal_1.vue'),
+      },
+      data: {
+        links: ['goods-horizontal-1', 'goods-horizontal-2', 'goods-horizontal-3'],
+        componentName: 'goods-horizontal-1',
+        //GoodsList
+        goodsList1: [
+          {
+            GoodsImg: "webimgs/n20220113115744321.jpg",
+            GoodsName: "uterUSally Essence of Chicken",
+            GoodsPrice: "1900.00",
+            GoodsDiscount: "-50%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "88.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211101104956457.jpg",
+            GoodsName: "豐傑生醫 100%膠原蛋白牛膠原萃取(30包/盒)+睡前代謝酵素(30包/盒)",
+            GoodsPrice: "203.00",
+            GoodsDiscount: "-30%",
+            GoodsLink: "?id=28313",
+            DiscountPrice: "168.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211112121850840.jpg",
+            GoodsName: "Fengjie 100% Collagen(30 packs/box)+Enzyme(30 packs/box)",
+            GoodsPrice: "60.00",
+            GoodsDiscount: "-20%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "288.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20220113115744321.jpg",
+            GoodsName: "uterUSally Essence of Chicken",
+            GoodsPrice: "1900.00",
+            GoodsDiscount: "-50%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "88.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211101104956457.jpg",
+            GoodsName: "豐傑生醫 100%膠原蛋白牛膠原萃取(30包/盒)+睡前代謝酵素(30包/盒)",
+            GoodsPrice: "203.00",
+            GoodsDiscount: "-30%",
+            GoodsLink: "?id=28313",
+            DiscountPrice: "168.00",
+            MinSpend: "RM 220",
+          },
+
+          {
+            GoodsImg: "webimgs/n20211101104956457.jpg",
+            GoodsName: "豐傑生醫 100%膠原蛋白牛膠原萃取(30包/盒)+睡前代謝酵素(30包/盒)",
+            GoodsPrice: "203.00",
+            GoodsDiscount: "-30%",
+            GoodsLink: "?id=28313",
+            DiscountPrice: "168.00",
+            MinSpend: "RM 220",
+          },
+        ],
+        goodsList2: [
+          {
+            GoodsImg: "webimgs/n20211115111317656.jpg",
+            GoodsName: "uterUSally Essence of Chicken",
+            GoodsPrice: "1900.00",
+            GoodsDiscount: "-50%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "88.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20220101101004799.jpg",
+            GoodsName: "豐傑生醫 100%膠原蛋白牛膠原萃取(30包/盒)+睡前代謝酵素(30包/盒)",
+            GoodsPrice: "203.00",
+            GoodsDiscount: "-30%",
+            GoodsLink: "?id=28313",
+            DiscountPrice: "168.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211213085410753.jpg",
+            GoodsName: "Fengjie 100% Collagen(30 packs/box)+Enzyme(30 packs/box)",
+            GoodsPrice: "60.00",
+            GoodsDiscount: "-20%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "288.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211112121850840.jpg",
+            GoodsName: "Fengjie 100% Collagen(30 packs/box)+Enzyme(30 packs/box)",
+            GoodsPrice: "60.00",
+            GoodsDiscount: "-20%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "288.00",
+            MinSpend: "RM 220",
+          },
+        ],
+        goodsList3: [
+          {
+            GoodsImg: "webimgs/n20211115020812191.jpg",
+            GoodsName: "uterUSally Essence of Chicken",
+            GoodsPrice: "1900.00",
+            GoodsDiscount: "-50%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "88.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20211230105547362.jpg",
+            GoodsName: "豐傑生醫 100%膠原蛋白牛膠原萃取(30包/盒)+睡前代謝酵素(30包/盒)",
+            GoodsPrice: "203.00",
+            GoodsDiscount: "-30%",
+            GoodsLink: "?id=28313",
+            DiscountPrice: "168.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20201111123153853.jpg",
+            GoodsName: "Fengjie 100% Collagen(30 packs/box)+Enzyme(30 packs/box)",
+            GoodsPrice: "60.00",
+            GoodsDiscount: "-20%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "288.00",
+            MinSpend: "RM 220",
+          },
+          {
+            GoodsImg: "webimgs/n20210701010416830.jpg",
+            GoodsName: "Fengjie 100% Collagen(30 packs/box)+Enzyme(30 packs/box)",
+            GoodsPrice: "60.00",
+            GoodsDiscount: "-20%",
+            GoodsLink: "?id=36364",
+            DiscountPrice: "288.00",
+            MinSpend: "RM 220",
+          },
+        ]
+      },
+    })
+  </script>
+</body>
+
+</html>
